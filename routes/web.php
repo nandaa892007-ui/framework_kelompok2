@@ -16,6 +16,7 @@ Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register');
     Route::post('/register', [RegisterController::class, 'register']);
 });
+
 // Email Verification Routes
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -37,9 +38,6 @@ Route::post('/email/resend', function (Request $request) {
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
 // Auth routes (sudah login)
-Route::middleware(['auth', 'verified'])->group(function () {
-
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
